@@ -1,0 +1,9 @@
+{
+  "name": "@1o1w1/lwq",
+  "version": "1.0.0",
+  "description": "react spa project bundle with webpack",
+  "main": "index.js",
+  "repository": "https://github.com/1o1w1/spa-webpack.git",
+  "author": "LWQ",
+  "license": "MIT"
+}
