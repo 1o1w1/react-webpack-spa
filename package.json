@@ -7,17 +7,25 @@
   "author": "LWQ",
   "license": "MIT",
   "dependencies": {
-    "clean-webpack-plugin": "^1.0.0",
-    "css-loader": "^2.0.1",
-    "file-loader": "^2.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "lodash": "^4.17.11",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
+    "lodash": "^4.17.11"
   },
   "scripts": {
-    "start":"webpack --config webpack_dev.config.js",
-    "build": "webpack --config webpack.config.js"
+    "start": "node   ./src/server.js",
+    "dev": "node   --inspect-brk=5858 ./src/server.js",
+    "build": "webpack --config ./src/webpack.config.prod.js"
+  },
+  "devDependencies": {
+    "console-stamp": "^0.2.7",
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^2.0.1",
+    "express": "^4.16.4",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "morgan": "^1.9.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }

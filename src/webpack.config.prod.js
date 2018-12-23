@@ -2,8 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+
+
 module.exports = {
-    mode: 'development',
   entry: {
     app: './temp/src/index.js',
     print: './temp/src/print.js'
@@ -12,7 +13,6 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './temp/dist')
   },
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
