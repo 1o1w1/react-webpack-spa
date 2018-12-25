@@ -1,11 +1,12 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
-
+let heihei = path.resolve(__dirname, '../temp/src/index.js')
+debugger
 module.exports = {
   mode: 'development',
   context: __dirname,
@@ -23,7 +24,12 @@ module.exports = {
   },
   // devtool: 'inline-source-map',
   // devtool: 'eval-source-map',
-  devtool: '#source-map',
+  devtool: 'source-map',
+  optimization: {
+        splitChunks: {
+           chunks: 'all'
+         }
+      },
   module: {
     rules: [
       {
@@ -43,7 +49,7 @@ module.exports = {
   },
   plugins: [
     //clean dist flod
-    new CleanWebpackPlugin([path.resolve(__dirname, '../temp/dist')]),
+    // new CleanWebpackPlugin([path.resolve(__dirname, '../temp/dist')],{ root: __dirname}),
     //auto create index.html
     new HtmlWebpackPlugin({
       title: 'Output Management'

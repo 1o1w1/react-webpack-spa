@@ -6,13 +6,14 @@
   "repository": "https://github.com/1o1w1/spa-webpack.git",
   "author": "LWQ",
   "license": "MIT",
+  "sideEffects": ["*.css"],
   "dependencies": {
     "lodash": "^4.17.11"
   },
   "scripts": {
     "start": "node   ./src/server.js",
     "dev": "node   --inspect-brk=5858 ./src/server.js",
-    "build": "webpack --config ./src/webpack.config.prod.js"
+    "build": "webpack   --config ./src/webpack.config.prod.js"
   },
   "devDependencies": {
     "console-stamp": "^0.2.7",

@@ -4,15 +4,24 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 
+
 module.exports = {
+  mode: 'development',
   entry: {
-    app: './temp/src/index.js',
-    print: './temp/src/print.js'
+    app: path.resolve(__dirname, '../temp/src/index.js'),
+    // print: path.resolve(__dirname, '../temp/src/print.js')
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, './temp/dist')
+    filename: '[name].[hash].js',
+    path: path.resolve(__dirname, '../temp/dist')
   },
+  // devtool: 'source-map',
+  optimization: {
+      // usedExports: true,
+      splitChunks: {
+        chunks: 'all'
+      }
+     },
   module: {
     rules: [
       {
@@ -31,7 +40,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['./temp/dist']),
+    new CleanWebpackPlugin([path.resolve(__dirname, '../temp/dist')], {root: path.resolve(__dirname, '../'),  verbose: true}),
     new HtmlWebpackPlugin({
       title: 'Output Management'
     }),
