@@ -12,7 +12,7 @@ module.exports = {
   context: __dirname,
   entry: {
     app: [path.resolve(__dirname, '../temp/src/index.js'),hotMiddlewareScript],
-    print: [path.resolve(__dirname, '../temp/src/print.js'),hotMiddlewareScript]
+    // print: [path.resolve(__dirname, '../temp/src/print.js'),hotMiddlewareScript]
     // app: path.resolve(__dirname, '../temp/src/index.js'),
     // print: path.resolve(__dirname, '../temp/src/print.js')
   },
@@ -24,8 +24,11 @@ module.exports = {
   },
   // devtool: 'inline-source-map',
   // devtool: 'eval-source-map',
-  devtool: 'source-map',
+
+  // devtool: 'source-map',
   optimization: {
+      // runtime信息单独打包,有利于cach
+      runtimeChunk: 'single',
         splitChunks: {
            chunks: 'all'
          }
@@ -57,6 +60,6 @@ module.exports = {
     //hrm
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };

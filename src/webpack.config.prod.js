@@ -1,25 +1,28 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const webpack = require('webpack');
 
 
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     app: path.resolve(__dirname, '../temp/src/index.js'),
     // print: path.resolve(__dirname, '../temp/src/print.js')
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, '../temp/dist')
   },
   // devtool: 'source-map',
   optimization: {
-      // usedExports: true,
+     // runtime信息单独打包,有利于cach
+     runtimeChunk: 'single',
+     //tree shaking
+      usedExports: true,
       splitChunks: {
-        chunks: 'all'
+        chunks: 'async'
       }
      },
   module: {
@@ -44,5 +47,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Output Management'
     }),
+    // keep moduleid
+    new webpack.HashedModuleIdsPlugin()
   ],
 };
