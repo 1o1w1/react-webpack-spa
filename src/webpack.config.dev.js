@@ -5,8 +5,11 @@ const webpack = require('webpack');
 
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
-let heihei = path.resolve(__dirname, '../temp/src/index.js')
-debugger
+//webworker
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
+
+
 module.exports = {
   mode: 'development',
   context: __dirname,
@@ -63,5 +66,12 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    //webworker
+    new WorkboxPlugin.GenerateSW({
+            // these options encourage the ServiceWorkers to get in there fast 
+            // and not allow any straggling "old" SWs to hang around
+            clientsClaim: true,
+            skipWaiting: true
+          })
   ],
 };
