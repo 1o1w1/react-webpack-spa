@@ -8,6 +8,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'production',
   entry: {
+    polyfills: path.resolve(__dirname, '../temp/src/polyfill.js'),
     app: path.resolve(__dirname, '../temp/src/index.js'),
     // print: path.resolve(__dirname, '../temp/src/print.js')
   },
@@ -39,7 +40,10 @@ module.exports = {
         use: [
           'file-loader'
         ]
-      }
+      },
+      { test: /\.js$/,
+        //  exclude: /node_modules/,
+        loader: "babel-loader" }
     ]
   },
   plugins: [

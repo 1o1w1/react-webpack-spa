@@ -7,6 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LWQ</title>
   <!-- <link rel="icon" href="/favicon.png" type="image/x-icon"> -->
+       <script>
+          var modernBrowser = (
+            'fetch' in window &&
+            'assign' in Object
+          );
+    
+           if ( !modernBrowser ) {
+           var scriptElement = document.createElement('script');
+    
+             scriptElement.async = false;
+             scriptElement.src = '/polyfills.bundle.js';
+             document.head.appendChild(scriptElement);
+          }
+        </script>
 </head>
 <body>
   <div id="root"></div>

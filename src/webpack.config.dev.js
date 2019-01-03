@@ -11,6 +11,7 @@ module.exports = {
   mode: 'development',
   context: __dirname,
   entry: {
+    polyfills: [path.resolve(__dirname, '../temp/src/polyfill.js'),hotMiddlewareScript],
     app: [path.resolve(__dirname, '../temp/src/index.js'),hotMiddlewareScript],
     // print: [path.resolve(__dirname, '../temp/src/print.js'),hotMiddlewareScript]
     // app: path.resolve(__dirname, '../temp/src/index.js'),
@@ -25,7 +26,7 @@ module.exports = {
   // devtool: 'inline-source-map',
   // devtool: 'eval-source-map',
 
-  // devtool: 'source-map',
+  devtool: 'source-map',
   optimization: {
       // runtime信息单独打包,有利于cach
       runtimeChunk: 'single',
@@ -47,7 +48,8 @@ module.exports = {
         use: [
           'file-loader'
         ]
-      }
+      },
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
     ]
   },
   plugins: [
