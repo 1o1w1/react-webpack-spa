@@ -1,5 +1,5 @@
 {
-  "name": "@1o1w1/lwq",
+  "name": "@1o1w1/spa-webpack",
   "version": "1.0.0",
   "description": "react spa project bundle with webpack",
   "main": "index.js",
