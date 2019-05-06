@@ -16,25 +16,25 @@ const resolve = require('resolve');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const InlineChunkHtmlPlugin = require('@1o1w1/react-dev-utils/InlineChunkHtmlPlugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const InterpolateHtmlPlugin = require('@1o1w1/react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+const WatchMissingNodeModulesPlugin = require('@1o1w1/react-dev-utils/WatchMissingNodeModulesPlugin');
+const ModuleScopePlugin = require('@1o1w1/react-dev-utils/ModuleScopePlugin');
+const getCSSModuleLocalIdent = require('@1o1w1/react-dev-utils/getCSSModuleLocalIdent');
 const paths = require('./paths');
 const modules = require('./modules');
 const getClientEnvironment = require('./env');
-const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const ModuleNotFoundPlugin = require('@1o1w1/react-dev-utils/ModuleNotFoundPlugin');
+const ForkTsCheckerWebpackPlugin = require('@1o1w1/react-dev-utils/ForkTsCheckerWebpackPlugin');
+const typescriptFormatter = require('@1o1w1/react-dev-utils/typescriptFormatter');
 // @remove-on-eject-begin
-const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
+const getCacheIdentifier = require('@1o1w1/react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
 const postcssNormalize = require('postcss-normalize');
 
@@ -150,7 +150,7 @@ module.exports = function(webpackEnv) {
       // require.resolve('webpack-dev-server/client') + '?/',
       // require.resolve('webpack/hot/dev-server'),
       isEnvDevelopment &&
-        require.resolve('react-dev-utils/webpackHotDevClient'),
+        require.resolve('@1o1w1/react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
       paths.appIndexJs,
       // We include the app code last so that if there is a runtime error during
@@ -316,11 +316,13 @@ module.exports = function(webpackEnv) {
           use: [
             {
               options: {
-                formatter: require.resolve('react-dev-utils/eslintFormatter'),
+                formatter: require.resolve(
+                  '@1o1w1/react-dev-utils/eslintFormatter'
+                ),
                 eslintPath: require.resolve('eslint'),
                 // @remove-on-eject-begin
                 baseConfig: {
-                  extends: [require.resolve('eslint-config-react-app')],
+                  extends: [require.resolve('@1o1w1/eslint-config-react-app')],
                 },
                 ignore: false,
                 useEslintrc: false,
@@ -355,12 +357,12 @@ module.exports = function(webpackEnv) {
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
-                  'babel-preset-react-app/webpack-overrides'
+                  '@1o1w1/babel-preset-react-app/webpack-overrides'
                 ),
                 // @remove-on-eject-begin
                 babelrc: false,
                 configFile: false,
-                presets: [require.resolve('babel-preset-react-app')],
+                presets: [require.resolve('@1o1w1/babel-preset-react-app')],
                 // Make sure we have a unique cache identifier, erring on the
                 // side of caution.
                 // We remove this when the user ejects because the default
@@ -371,16 +373,16 @@ module.exports = function(webpackEnv) {
                     ? 'production'
                     : isEnvDevelopment && 'development',
                   [
-                    'babel-plugin-named-asset-import',
-                    'babel-preset-react-app',
-                    'react-dev-utils',
-                    'react-scripts',
+                    '@1o1w1/babel-plugin-named-asset-import',
+                    '@1o1w1/babel-preset-react-app',
+                    '@1o1w1/react-dev-utils',
+                    '@1o1w1/react-scripts',
                   ]
                 ),
                 // @remove-on-eject-end
                 plugins: [
                   [
-                    require.resolve('babel-plugin-named-asset-import'),
+                    require.resolve('@1o1w1/babel-plugin-named-asset-import'),
                     {
                       loaderMap: {
                         svg: {
@@ -410,7 +412,9 @@ module.exports = function(webpackEnv) {
                 compact: false,
                 presets: [
                   [
-                    require.resolve('babel-preset-react-app/dependencies'),
+                    require.resolve(
+                      '@1o1w1/babel-preset-react-app/dependencies'
+                    ),
                     { helpers: true },
                   ],
                 ],
@@ -422,10 +426,10 @@ module.exports = function(webpackEnv) {
                     ? 'production'
                     : isEnvDevelopment && 'development',
                   [
-                    'babel-plugin-named-asset-import',
-                    'babel-preset-react-app',
-                    'react-dev-utils',
-                    'react-scripts',
+                    '@1o1w1/babel-plugin-named-asset-import',
+                    '@1o1w1/babel-preset-react-app',
+                    '@1o1w1/react-dev-utils',
+                    '@1o1w1/react-scripts',
                   ]
                 ),
                 // @remove-on-eject-end

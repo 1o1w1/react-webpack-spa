@@ -1,10 +1,10 @@
 {
-  "name": "babel-preset-react-app",
+  "name": "@1o1w1/babel-preset-react-app",
   "version": "8.0.0",
   "description": "Babel preset used by Create React App",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/1o1w1/spa-webpack.git",
     "directory": "packages/babel-preset-react-app"
   },
   "license": "MIT",

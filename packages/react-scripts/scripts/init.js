@@ -16,10 +16,10 @@ process.on('unhandledRejection', err => {
 
 const fs = require('fs-extra');
 const path = require('path');
-const chalk = require('react-dev-utils/chalk');
+const chalk = require('@1o1w1/react-dev-utils/chalk');
 const execSync = require('child_process').execSync;
-const spawn = require('react-dev-utils/crossSpawn');
-const { defaultBrowsers } = require('react-dev-utils/browsersHelper');
+const spawn = require('@1o1w1/react-dev-utils/crossSpawn');
+const { defaultBrowsers } = require('@1o1w1/react-dev-utils/browsersHelper');
 const os = require('os');
 const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
 
@@ -95,10 +95,10 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts start',
-    build: 'react-scripts build',
-    test: 'react-scripts test',
-    eject: 'react-scripts eject',
+    start: '1o1w1-react-scripts start',
+    build: '1o1w1-react-scripts build',
+    test: '1o1w1-react-scripts test',
+    eject: '1o1w1-react-scripts eject',
   };
 
   // Setup the eslint config

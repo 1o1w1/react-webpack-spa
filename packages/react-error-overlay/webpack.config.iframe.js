@@ -40,7 +40,10 @@ module.exports = {
                 configFile: false,
                 compact: false,
                 presets: [
-                  ['babel-preset-react-app/dependencies', { helpers: true }],
+                  [
+                    '@1o1w1/babel-preset-react-app/dependencies',
+                    { helpers: true },
+                  ],
                 ],
               },
             },

@@ -10,7 +10,7 @@
 const babelJest = require('babel-jest');
 
 module.exports = babelJest.createTransformer({
-  presets: [require.resolve('babel-preset-react-app')],
+  presets: [require.resolve('@1o1w1/babel-preset-react-app')],
   babelrc: false,
   configFile: false,
 });

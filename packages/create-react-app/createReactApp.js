@@ -132,8 +132,8 @@ if (program.info) {
         System: ['OS', 'CPU'],
         Binaries: ['Node', 'npm', 'Yarn'],
         Browsers: ['Chrome', 'Edge', 'Internet Explorer', 'Firefox', 'Safari'],
-        npmPackages: ['react', 'react-dom', 'react-scripts'],
-        npmGlobalPackages: ['create-react-app'],
+        npmPackages: ['react', 'react-dom', '@1o1w1/react-scripts'],
+        npmGlobalPackages: ['@1o1w1/create-react-app'],
       },
       {
         duplicates: true,

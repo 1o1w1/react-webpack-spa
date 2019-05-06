@@ -1,10 +1,10 @@
 {
-  "name": "react-scripts",
+  "name": "@1o1w1/react-scripts",
   "version": "3.0.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/1o1w1/spa-webpack.git",
     "directory": "packages/react-scripts"
   },
   "license": "MIT",
@@ -24,7 +24,7 @@
     "utils"
   ],
   "bin": {
-    "react-scripts": "./bin/react-scripts.js"
+    "1o1w1-react-scripts": "./bin/react-scripts.js"
   },
   "types": "./lib/react-app.d.ts",
   "dependencies": {
@@ -35,15 +35,15 @@
     "babel-eslint": "10.0.1",
     "babel-jest": "24.7.1",
     "babel-loader": "8.0.5",
-    "babel-plugin-named-asset-import": "^0.3.2",
-    "babel-preset-react-app": "^8.0.0",
+    "@1o1w1/babel-plugin-named-asset-import": "^0.3.2",
+    "@1o1w1/babel-preset-react-app": "^8.0.0",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-react-app": "^4.0.0",
+    "@1o1w1/eslint-config-react-app": "^4.0.0",
     "eslint-loader": "2.1.2",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-import": "2.16.0",
@@ -67,8 +67,8 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
-    "react-app-polyfill": "^1.0.0",
-    "react-dev-utils": "^9.0.0",
+    "@1o1w1/react-app-polyfill": "^1.0.0",
+    "@1o1w1/react-dev-utils": "^9.0.0",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",

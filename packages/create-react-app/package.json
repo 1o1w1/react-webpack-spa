@@ -1,5 +1,5 @@
 {
-  "name": "create-react-app",
+  "name": "@1o1w1/create-react-app",
   "version": "3.0.0",
   "keywords": [
     "react"
@@ -7,7 +7,7 @@
   "description": "Create React apps with no build configuration.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/1o1w1/spa-webpack.git",
     "directory": "packages/create-react-app"
   },
   "license": "MIT",
@@ -23,7 +23,7 @@
     "yarn.lock.cached"
   ],
   "bin": {
-    "create-react-app": "./index.js"
+    "1o1w1-create-react-app": "./index.js"
   },
   "dependencies": {
     "chalk": "2.4.2",
