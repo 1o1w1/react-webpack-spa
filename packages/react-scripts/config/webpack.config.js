@@ -326,7 +326,8 @@ module.exports = function(webpackEnv) {
                 },
                 ignore: false,
                 useEslintrc: false,
-                emitError: true,
+                // emitError: true,
+                fix: true,
                 // @remove-on-eject-end
               },
               loader: require.resolve('eslint-loader'),

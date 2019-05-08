@@ -22,21 +22,9 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    // "indent": [
-    //     "error",
-    //     "tab"
-    // ],
-    // "linebreak-style": [
-    //     "error",
-    //     "windows"
-    // ],
-    // "quotes": [
-    //     "error",
-    //     "single"
-    // ],
-    // "semi": [
-    //     "error",
-    //     "always"
-    // ]
+    indent: ['error', 'tab'],
+    'linebreak-style': ['error', 'windows'],
+    quotes: ['error', 'double'],
+    semi: ['error', 'always'],
   },
 };

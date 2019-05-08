@@ -6,6 +6,12 @@ import './App.css';
 //   return a*b
 // }
 
+const newObject = {
+  a: 'a.m.',
+  b: 'p.m.',
+  c: 'daylight saving time',
+};
+
 function App() {
   return (
     <div className="App">
