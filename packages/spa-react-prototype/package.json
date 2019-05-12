@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "typescript": "^3.4.5"
   },
   "scripts": {
+    "debug":"node --inspect-brk=5858  ./node_modules/@1o1w1/react-scripts/bin/react-scripts.js start",
+    "debug1":"node --inspect-brk=5858  ./node_modules/@1o1w1/react-scripts/config/paths.js",
     "start": "1o1w1-react-scripts start",
     "build": "1o1w1-react-scripts build",
     "test": "1o1w1-react-scripts test",
