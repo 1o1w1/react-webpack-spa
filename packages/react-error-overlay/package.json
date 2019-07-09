@@ -86,5 +86,6 @@
   },
   "dependencies": {
     "babel-preset-react-app": "^8.0.0"
-  }
+  },
+  "gitHead": "3df40181c4feb808eafe0205b39ef8cd470db7a5"
 }
