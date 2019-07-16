@@ -7,7 +7,6 @@
  */
 
 'use strict';
-
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
@@ -32,6 +31,7 @@ switch (script) {
     const result = spawn.sync(
       'node',
       nodeArgs
+        .concat(['--inspect-brk=10086'])
         .concat(require.resolve('../scripts/' + script))
         .concat(args.slice(scriptIndex + 1)),
       { stdio: 'inherit' }

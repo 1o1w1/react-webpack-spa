@@ -4,6 +4,7 @@
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         
         
         {
@@ -14,9 +15,18 @@
         },
         {
             "type": "node",
+            "request": "attach",
+            "name": "Attach to child",
+            "port":  10086
+        },
+        {
+            "type": "node",
             "request": "launch",
             "name": "启动程序",
-            "program": "${workspaceFolder}\\index.js"
+            "program": "${workspaceFolder}\\packages\\react-scripts\\bin\\react-scripts.js",
+            "args": ["start"],
+            "autoAttachChildProcesses": true,
+            "cwd": "${workspaceFolder}\\packages\\react-scripts"
         }
     ]
 }
