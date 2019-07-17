@@ -83,5 +83,5 @@
   "scripts": {
     "test": "cross-env FORCE_COLOR=true jest"
   },
-  "gitHead": "3df40181c4feb808eafe0205b39ef8cd470db7a5"
+  "gitHead": "18c00b6d7c64ade8a90e21bb506d4f05eb55289c"
 }
