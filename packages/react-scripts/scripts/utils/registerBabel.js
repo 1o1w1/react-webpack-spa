@@ -9,6 +9,7 @@ module.exports.registerBabel = function() {
             node: true,
           },
           useBuiltIns: 'usage',
+          corejs: { version: 3, proposals: true },
         },
       ],
     ],
