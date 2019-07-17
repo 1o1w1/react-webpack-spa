@@ -1,6 +1,6 @@
 {
   "name": "@1o1w1/eslint-config-react-app",
-  "version": "4.0.3",
+  "version": "4.0.4-alpha.0",
   "description": "ESLint configuration used by Create React App",
   "repository": {
     "type": "git",
