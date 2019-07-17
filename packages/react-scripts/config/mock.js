@@ -92,7 +92,6 @@ function realApplyMock(devServer) {
 
   Object.keys(config).forEach(key => {
     const keyParsed = parseKey(key);
-    debugger;
     assert(!!app[keyParsed.method], `method of ${key} is not valid`);
     assert(
       typeof config[key] === 'function' ||
