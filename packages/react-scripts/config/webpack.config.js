@@ -49,16 +49,24 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
 const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+// const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.(less)$/;
 const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
+// const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
+
+  const lessLoader = {
+    loader: require.resolve('less-loader'),
+    options: {
+      sourceMap: isEnvProduction && shouldUseSourceMap,
+      javascriptEnabled: true,
+    },
+  };
 
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -117,13 +125,16 @@ module.exports = function(webpackEnv) {
         },
       },
     ].filter(Boolean);
-    if (preProcessor) {
+    if (typeof preProcessor == 'string') {
       loaders.push({
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
       });
+    }
+    if (typeof preProcessor == 'object') {
+      loaders.push(preProcessor);
     }
     return loaders;
   };
@@ -521,7 +532,7 @@ module.exports = function(webpackEnv) {
                   modules: true,
                   getLocalIdent: getCSSModuleLocalIdent,
                 },
-                'less-loader'
+                lessLoader
               ),
             },
             {
@@ -532,7 +543,7 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'less-loader'
+                lessLoader
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
