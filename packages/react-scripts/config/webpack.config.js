@@ -59,12 +59,13 @@ const sassRegex = /\.(scss|sass)$/;
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
-
+  const localLessConfig = require(paths.webpackConfig).theme;
   const lessLoader = {
     loader: require.resolve('less-loader'),
     options: {
       sourceMap: isEnvProduction && shouldUseSourceMap,
       javascriptEnabled: true,
+      ...localLessConfig,
     },
   };
 
