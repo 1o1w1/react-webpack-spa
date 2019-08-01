@@ -1,6 +1,6 @@
 {
   "name": "@1o1w1/react-scripts",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -29,10 +29,10 @@
   "types": "./lib/react-app.d.ts",
   "dependencies": {
     "@1o1w1/babel-plugin-named-asset-import": "^0.3.2",
-    "@1o1w1/babel-preset-react-app": "^8.0.0",
+    "@1o1w1/babel-preset-react-app": "^8.0.1",
     "@1o1w1/eslint-config-react-app": "^4.0.4-alpha.0",
     "@1o1w1/react-app-polyfill": "^1.0.0",
-    "@1o1w1/react-dev-utils": "^9.0.3-alpha.0",
+    "@1o1w1/react-dev-utils": "^9.0.3",
     "@babel/core": "7.4.3",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
