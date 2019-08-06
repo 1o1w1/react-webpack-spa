@@ -1,6 +1,6 @@
 {
   "name": "@1o1w1/react-dev-utils",
-  "version": "9.0.3",
+  "version": "9.0.4",
   "description": "Webpack utilities used by Create React App",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "webpackHotDevClient.js"
   ],
   "dependencies": {
-    "@1o1w1/react-error-overlay": "^5.1.9",
+    "@1o1w1/react-error-overlay": "^5.1.10",
     "@babel/code-frame": "7.0.0",
     "address": "1.0.3",
     "browserslist": "4.5.4",
