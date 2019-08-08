@@ -1,7 +1,7 @@
 import mock_index from './mock/index';
 
 const proxy = {
-  'GET /temp': mock_index,
+  'GET /temp': { heihei: 1111 },
 };
 
 const noProxy = process.env.NO_PROXY === 'true';

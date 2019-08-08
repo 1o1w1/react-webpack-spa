@@ -83,6 +83,8 @@ function applyMock(devServer) {
   }
 }
 
+let initFlag = false,
+  mock_index;
 function realApplyMock(devServer) {
   const config = getConfig();
   const app = devServer;
@@ -135,7 +137,6 @@ function realApplyMock(devServer) {
       limit: '5mb',
     })
   );
-
   mockRules.forEach(mock => {
     app[mock.method](
       mock.path,
@@ -143,21 +144,19 @@ function realApplyMock(devServer) {
     );
   });
 
-  // // 调整 stack，把 historyApiFallback 放到最后
-  // let lastIndex = null;
-  // app._router.stack.forEach((item, index) => {
-  //   if (item.name === 'webpackDevMiddleware') {
-  //     lastIndex = index;
-  //   }
-  // });
-  // const mockAPILength = app._router.stack.length - 1 - lastIndex;
-  // if (lastIndex && lastIndex > 0) {
-  //   const newStack = app._router.stack;
-  //   newStack.push(newStack[lastIndex - 1]);
-  //   newStack.push(newStack[lastIndex]);
-  //   newStack.splice(lastIndex - 1, 2);
-  //   app._router.stack = newStack;
-  // }
+  if (initFlag) {
+    const mockArr = app._router.stack.splice(
+      -mockRules.length - 2,
+      mockRules.length + 2
+    );
+    app._router.stack.splice(mock_index, 0, ...mockArr);
+  }
+  initFlag = true;
+  app._router.stack.forEach((item, index) => {
+    if (item.route && item.route.path == '__mockData') {
+      mock_index = index - mockRules.length + 1 - 2;
+    }
+  });
 
   const watcher = chokidar.watch([mockConfig, mockDir], {
     ignored: /node_modules/,
@@ -166,9 +165,8 @@ function realApplyMock(devServer) {
   watcher.on('change', path => {
     console.log(chalk.green('CHANGED'), path.replace(appDirectory, '.'));
     watcher.close();
-
     // 删除旧的 mock api
-    app._router.stack.splice(lastIndex - 1, mockAPILength);
+    app._router.stack.splice(mock_index, mockRules.length + 2);
 
     applyMock(devServer);
   });
