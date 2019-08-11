@@ -1,5 +1,10 @@
 module.exports = {
-  theme: {
+  lessLoaderOptions: {
     modifyVars: { '@primary-color': 'red' },
+  },
+  babelLoaderOptions: {
+    plugins: [
+      // ["import", {"libraryName": "antd-mobile", "style": true}],
+    ],
   },
 };

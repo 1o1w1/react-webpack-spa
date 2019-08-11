@@ -37,6 +37,7 @@ const typescriptFormatter = require('@1o1w1/react-dev-utils/typescriptFormatter'
 const getCacheIdentifier = require('@1o1w1/react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
 const postcssNormalize = require('postcss-normalize');
+const localConfig = require(paths.webpackConfig);
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -59,14 +60,16 @@ const sassRegex = /\.(scss|sass)$/;
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
-  const localLessConfig = require(paths.webpackConfig).theme;
+  const lessLoaderOptions = localConfig.lessLoaderOptions;
   const lessLoader = {
     loader: require.resolve('less-loader'),
-    options: {
-      sourceMap: isEnvProduction && shouldUseSourceMap,
-      javascriptEnabled: true,
-      ...localLessConfig,
-    },
+    options: mergeOptions(
+      {
+        sourceMap: isEnvProduction && shouldUseSourceMap,
+        javascriptEnabled: true,
+      },
+      lessLoaderOptions
+    ),
   };
 
   // Webpack uses `publicPath` to determine where the app is being served from.
@@ -370,51 +373,53 @@ module.exports = function(webpackEnv) {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
-              options: {
-                customize: require.resolve(
-                  '@1o1w1/babel-preset-react-app/webpack-overrides'
-                ),
-                // @remove-on-eject-begin
-                babelrc: false,
-                configFile: false,
-                presets: [require.resolve('@1o1w1/babel-preset-react-app')],
-                // Make sure we have a unique cache identifier, erring on the
-                // side of caution.
-                // We remove this when the user ejects because the default
-                // is sane and uses Babel options. Instead of options, we use
-                // the react-scripts and babel-preset-react-app versions.
-                cacheIdentifier: getCacheIdentifier(
-                  isEnvProduction
-                    ? 'production'
-                    : isEnvDevelopment && 'development',
-                  [
-                    '@1o1w1/babel-plugin-named-asset-import',
-                    '@1o1w1/babel-preset-react-app',
-                    '@1o1w1/react-dev-utils',
-                    '@1o1w1/react-scripts',
-                  ]
-                ),
-                // @remove-on-eject-end
-                plugins: [
-                  [
-                    require.resolve('@1o1w1/babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
+              options: mergeOptions(
+                {
+                  customize: require.resolve(
+                    '@1o1w1/babel-preset-react-app/webpack-overrides'
+                  ),
+                  // @remove-on-eject-begin
+                  babelrc: false,
+                  configFile: false,
+                  presets: [require.resolve('@1o1w1/babel-preset-react-app')],
+                  // Make sure we have a unique cache identifier, erring on the
+                  // side of caution.
+                  // We remove this when the user ejects because the default
+                  // is sane and uses Babel options. Instead of options, we use
+                  // the react-scripts and babel-preset-react-app versions.
+                  cacheIdentifier: getCacheIdentifier(
+                    isEnvProduction
+                      ? 'production'
+                      : isEnvDevelopment && 'development',
+                    [
+                      '@1o1w1/babel-plugin-named-asset-import',
+                      '@1o1w1/babel-preset-react-app',
+                      '@1o1w1/react-dev-utils',
+                      '@1o1w1/react-scripts',
+                    ]
+                  ),
+                  // @remove-on-eject-end
+                  plugins: [
+                    [
+                      require.resolve('@1o1w1/babel-plugin-named-asset-import'),
+                      {
+                        loaderMap: {
+                          svg: {
+                            ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
+                          },
                         },
                       },
-                    },
+                    ],
                   ],
-                  ['import', { libraryName: 'antd', style: true }],
-                ],
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
-                cacheCompression: isEnvProduction,
-                compact: isEnvProduction,
-              },
+                  // This is a feature of `babel-loader` for webpack (not Babel itself).
+                  // It enables caching results in ./node_modules/.cache/babel-loader/
+                  // directory for faster rebuilds.
+                  cacheDirectory: true,
+                  cacheCompression: isEnvProduction,
+                  compact: isEnvProduction,
+                },
+                localConfig.babelLoaderOptions
+              ),
             },
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.
@@ -734,4 +739,29 @@ function exclude(filePath) {
   }
 
   // if (/\.local\.(css|less|sass|scss)$/.test(filePath)) return true;
+}
+
+function mergeOptions(options1, options2) {
+  if (options2._overide) {
+    return options2;
+  }
+
+  const res = {
+    ...options2,
+    ...options1,
+  };
+  Object.keys(options2).forEach(key => {
+    if (options1[key]) {
+      if (Object.prototype.toString.call(options1[key]) === '[object Object]') {
+        res[key] = mergeOptions(options1[key], options2[key]);
+      } else if (
+        Object.prototype.toString.call(options1[key]) === '[object Array]'
+      ) {
+        res[key] = [...res[key], ...options2[key]];
+      } else {
+        res[key] = options2[key];
+      }
+    }
+  });
+  return res;
 }
